@@ -8,11 +8,17 @@ import time
 import logging
 import websockets
 
+""" Set up the logger """
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
 async def slow_echo(websocket):
     async for message in websocket:
         # Block the event loop! This allows saturating a single asyncio
         # process without opening an impractical number of connections.
         time.sleep(0.1)  # 100ms
+        logger.info("Received: %s", message)
+        message = "Sender: " + message
         await websocket.send(message)
 
 
@@ -30,9 +36,6 @@ async def health_check(path, request_headers):
 
 
 async def main():
-    """ Set up the logger """
-    logger = logging.getLogger(__name__)
-    logger.setLevel(logging.INFO)
 
     # https://docs.python.org/3.9/library/logging.html#logrecord-attributes
     formatter = logging.Formatter("%(asctime)s %(levelname)s %(process)d %(thread)d %(message)s")

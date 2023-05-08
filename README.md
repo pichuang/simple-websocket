@@ -19,8 +19,16 @@ docker build -t websockets-test:1.0 .
 
 ## Run
 
-```
+### Docker
+
+```bash
 docker run --name run-websockets-test --publish 32080:5566 --rm docker pull ghcr.io/pichuang/simple-websocket:main
+```
+
+### Kubernetes
+
+```bash
+kubectl apply -f https://raw.githubusercontent.com/pichuang/simple-websocket/main/deployment.yml
 ```
 
 ## Test

@@ -25,7 +25,12 @@ spec:
   selector:
     app: simple-websockets
   ports:
-  - protocol: TCP
+  - name: https-port
+    protocol: TCP
+    port: 443
+    targetPort: 5566
+  - name: http-port
+    protocol: TCP
     port: 80
     targetPort: 5566
 ---
