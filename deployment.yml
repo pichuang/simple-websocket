@@ -39,6 +39,7 @@ kind: Deployment
 metadata:
   name: simple-websockets
 spec:
+  replicas: 2
   selector:
     matchLabels:
       app: simple-websockets
@@ -50,6 +51,7 @@ spec:
       containers:
       - name: simple-websockets
         image: ghcr.io/pichuang/simple-websocket:main
+        imagePullPolicy: Always
         livenessProbe:
           httpGet:
             path: /healthz
