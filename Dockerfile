@@ -1,6 +1,6 @@
 FROM docker.io/python:3.9.16-alpine3.17
 
-ENV SUMMARY="Summary of Simple Websocket Program"
+ENV SUMMARY="Summary of Simple Websocket Program" \
     DESCRIPTION="Description of Simple Websocket Program"
 
 LABEL summary="$SUMMARY" \
