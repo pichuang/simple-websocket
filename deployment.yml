@@ -1,0 +1,55 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: simple-websockets
+  annotations:
+    kubernetes.io/ingress.class: azure/application-gateway
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        backend:
+          service:
+            name: simple-websockets
+            port:
+              number: 80
+        pathType: Exact
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: simple-websockets
+spec:
+  selector:
+    app: simple-websockets
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 5566
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-websockets
+spec:
+  selector:
+    matchLabels:
+      app: simple-websockets
+  template:
+    metadata:
+      labels:
+        app: simple-websockets
+    spec:
+      containers:
+      - name: simple-websockets
+        image: ghcr.io/pichuang/simple-websocket:main
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 5566
+          periodSeconds: 1
+        ports:
+        - containerPort: 5566
+          protocol: TCP
