@@ -1,8 +1,29 @@
 ---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: simple-websockets
+  namespace: default
+spec:
+  maxReplicas: 15
+  metrics:
+  - resource:
+      name: cpu
+      target:
+        averageUtilization: 75
+        type: Utilization
+    type: Resource
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: simple-websockets
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: simple-websockets
+  namespace: default
   annotations:
     kubernetes.io/ingress.class: azure/application-gateway
 spec:
@@ -21,6 +42,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: simple-websockets
+  namespace: default
 spec:
   selector:
     app: simple-websockets
@@ -38,6 +60,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: simple-websockets
+  namespace: default
 spec:
   replicas: 2
   selector:
@@ -57,6 +80,18 @@ spec:
             path: /healthz
             port: 5566
           periodSeconds: 1
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 5566
+          periodSeconds: 1
+        resources:
+          limits:
+            cpu: 500m
+            memory: 256Mi
+          requests:
+            cpu: 250m
+            memory: 128Mi
         ports:
         - containerPort: 5566
           protocol: TCP

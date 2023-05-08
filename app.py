@@ -16,9 +16,9 @@ async def slow_echo(websocket):
     async for message in websocket:
         # Block the event loop! This allows saturating a single asyncio
         # process without opening an impractical number of connections.
-        time.sleep(0.1)  # 100ms
-        logger.info("Received: %s", message)
-        message = "Sender: " + message
+        # time.sleep(0.1)  # 100ms
+        logger.info("OCPP Client: %s", message)
+        message = "OCPP Server Recived: " + message
         await websocket.send(message)
 
 

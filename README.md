@@ -1,9 +1,18 @@
 # Simple Websocket
 
+
+## TODO
+
+- [x] Websocket Implementation
+- [ ] Azure Test Loading - Jmeter Websocket
+- [ ] Azure Traffic Manager
+
 ## Environment
 
 - Python3.9
   - `. venv/bin/activate`
+- Azure Kubernetes Service
+- Application Gateway Ingress Controller
 
 ## Run
 
@@ -36,6 +45,11 @@ kubectl apply -f https://raw.githubusercontent.com/pichuang/simple-websocket/mai
 ```bash
 python -m websockets ws://localhost:32080/
 ```
+
+## Jmeter
+
+- [Microsoft Build of OpenJDK](https://learn.microsoft.com/zh-tw/java/openjdk/download)
+- 
 
 ## References
 
