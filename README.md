@@ -1,10 +1,10 @@
 # Simple Websocket
 
-
 ## TODO
 
 - [x] Websocket Implementation
-- [ ] Azure Test Loading - Jmeter Websocket
+- [x] Azure Test Loading - Jmeter Websocket
+- [ ] Azure Chaose Engineer - Chase Mesh
 - [ ] Azure Traffic Manager
 
 ## Environment
@@ -13,6 +13,8 @@
   - `. venv/bin/activate`
 - Azure Kubernetes Service
 - Application Gateway Ingress Controller
+- Azure Test Loading
+
 
 ## Run
 
@@ -40,16 +42,16 @@ docker run --name run-websockets-test --publish 32080:5566 --rm docker pull ghcr
 kubectl apply -f https://raw.githubusercontent.com/pichuang/simple-websocket/main/deployment.yml
 ```
 
-## Test
+## Smoke Testing
 
 ```bash
 python -m websockets ws://localhost:32080/
 ```
 
-## Jmeter
+## Load Testing
 
 - [Microsoft Build of OpenJDK](https://learn.microsoft.com/zh-tw/java/openjdk/download)
-- 
+- [Apache Jmeter 5.5](https://jmeter.apache.org/download_jmeter.cgi)
 
 ## References
 
