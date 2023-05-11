@@ -1,23 +1,17 @@
 ---
-apiVersion: autoscaling/v2
+apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
   name: simple-websockets
   namespace: default
 spec:
   maxReplicas: 15
-  metrics:
-  - resource:
-      name: cpu
-      target:
-        averageUtilization: 75
-        type: Utilization
-    type: Resource
   minReplicas: 1
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
     name: simple-websockets
+  targetCPUUtilizationPercentage: 50
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
