@@ -6,6 +6,14 @@
 - [x] Azure Test Loading - Jmeter Websocket
 - [ ] Azure Chaose Engineer - Chase Mesh
 - [ ] Azure Traffic Manager
+- [ ] HorizontalPodAutoscaler - autoscaling/v2
+- [ ] [VerticalPodAutoscaler](https://learn.microsoft.com/en-us/azure/aks/vertical-pod-autoscaler)
+- [ ] [cluster autoscaler](https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler)
+- [ ] Azure Log Analytics
+- [ ] Azure Container Insights
+- [ ] Azure Monitor workspace
+- [ ] Azure Managed Grafana
+
 
 ## Environment
 
@@ -14,7 +22,6 @@
 - Azure Kubernetes Service
 - Application Gateway Ingress Controller
 - Azure Test Loading
-
 
 ## Run
 
